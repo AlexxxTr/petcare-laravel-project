@@ -39,5 +39,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('administrations');
+        Schema::dropIfExists('administrations_language');
     }
 };
