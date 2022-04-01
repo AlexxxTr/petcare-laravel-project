@@ -2,6 +2,8 @@
 
 namespace App\Modules\Users\Models;
 
+use App\Modules\Houses\Models\House;
+use App\Modules\Houses\Models\HouseGuest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -30,4 +32,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password'
     ];
+
+    public function guest() {
+        return $this->belongsToMany(House::class)->using(HouseGuest::class);
+    }
 }

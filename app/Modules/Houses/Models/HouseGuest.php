@@ -3,13 +3,11 @@
 namespace App\Modules\Houses\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class HouseGuest extends Model
+class HouseGuest extends Pivot
 {
     use HasFactory;
-
-    protected $timestamps = false;
     
-    protected $fillable = ['house_id', 'guest_id'];
+    protected $fillable = ['house_id', 'user_id'];
 }
