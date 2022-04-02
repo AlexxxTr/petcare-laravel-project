@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class HouseGuest extends Pivot
 {
     use HasFactory;
+
+    protected $table = 'house_guests';
     
     protected $fillable = ['house_id', 'user_id'];
 }
