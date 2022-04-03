@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Modules\Pets\Models;
 
 use App\Modules\Pets\Models\Pet;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -19,9 +19,9 @@ class PetFactory extends Factory
     public function definition()
     {
         return [
-            "type" => $this->sequence(["bird", "dog", "cat"]),
+            "type" => $this->faker->randomElement(["dog", "cat", "bird"]),
             "name" => $this->faker->firstName(),
-            "house_id" => $this->sequence([1, 2, 3, 4, 5])
+            "house_id" => $this->faker->numberBetween(1, 5)
         ];
     }
 }

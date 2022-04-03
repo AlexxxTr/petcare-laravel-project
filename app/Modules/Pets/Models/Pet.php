@@ -10,7 +10,7 @@ class Pet extends Model
 {
     use HasFactory; 
 
-    protected $timestamps = false;
+    public $timestamps = false;
     
     protected $fillable = ['type', 'name', 'house_id'];
 

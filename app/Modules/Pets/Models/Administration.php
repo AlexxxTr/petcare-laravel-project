@@ -9,7 +9,7 @@ class Administration extends Model
 {
     use HasFactory;
 
-    protected $timestamps = false;
+    public $timestamps = false;
     
     protected $fillable = ['pet_id', 'date', 'meal', 'medicine_id', 'notes'];
 }

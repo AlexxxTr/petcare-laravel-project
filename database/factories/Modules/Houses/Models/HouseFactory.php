@@ -1,16 +1,16 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Modules\Houses\Models;
 
-use App\Modules\Pets\Models\Medicine;
+use App\Modules\Houses\Models\House;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class MedicineFactory extends Factory
+class HouseFactory extends Factory
 {
-    protected $model = Medicine::class;
+    protected $model = House::class;
     /**
      * Define the model's default state.
      *
@@ -19,8 +19,8 @@ class MedicineFactory extends Factory
     public function definition()
     {
         return [
-            "name" => $this->faker->lastName(),
-            "description" => $this->faker->text(40)
+            "name" => $this->faker->name(),
+            "owner" => $this->faker->numberBetween(1, 5)
         ];
     }
 }

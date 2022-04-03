@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Modules\Pets\Models;
 
 use App\Modules\Pets\Models\Administration;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -21,7 +21,7 @@ class AdministrationFactory extends Factory
         return [
             "pet_id" => $this->faker->numberBetween(1,5),
             "date" => $this->faker->dateTimeBetween('now', '+3 weeks')->format('Y-m-d'),
-            "meal" => $this->sequence(['breakfast', 'lunch', 'dinner']),
+            "meal" => $this->faker->randomElement(['breakfast', 'lunch', 'dinner']),
             "notes" => $this->faker->text(20),
             "medicine_id" => $this->faker->numberBetween(1, 5)
         ];

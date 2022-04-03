@@ -9,7 +9,7 @@ class AdministrationLanguage extends Model
 {
     use HasFactory;
 
-    protected $timestamps = false;
+    public $timestamps = false;
     protected $table = 'administrations_language';
     
     protected $fillable = ['administration_id', 'date', 'meal', 'notes'];
