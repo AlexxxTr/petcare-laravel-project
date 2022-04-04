@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('administrations', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->autoIncrement();
             $table->integer('pet_id');
             $table->date('date');
             $table->string('meal');
@@ -23,7 +23,7 @@ return new class extends Migration
         });
 
         Schema::create('administrations_language', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->autoIncrement();
             $table->integer('adminstration_id');
             $table->date('date');
             $table->string('meal');

@@ -23,4 +23,3 @@ class UserApiController extends Controller
         return $user;
     }
 }
-     

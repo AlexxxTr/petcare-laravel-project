@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('houses', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->autoIncrement();
             $table->string('name');
-            $table->integer('owner');
+            $table->integer('owner')->unique();
         });
     }
 
