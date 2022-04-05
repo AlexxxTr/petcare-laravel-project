@@ -14,17 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::table('administrations', function (Blueprint $table) {
-            $table->foreign('pet_id')->references('id')->on('pets');
-            $table->foreign('medicine_id')->references('id')->on('medicines');
+            $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');
+            $table->foreign('medicine_id')->references('id')->on('medicines')->onDelete('no action');
         });
 
         Schema::table('administrations_language', function (Blueprint $table) {
-            $table->foreign('adminstration_id')->references('id')->on('administrations');
+            $table->foreign('adminstration_id')->references('id')->on('administrations')->onDelete('cascade');
         });
 
         Schema::table('house_guests', function (Blueprint $table) {
-            $table->foreign('house_id')->references('id')->on('houses');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('house_id')->references('id')->on('houses')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
         Schema::table('houses', function (Blueprint $table) {
@@ -32,7 +32,7 @@ return new class extends Migration
         });
 
         Schema::table('pets', function (Blueprint $table) {
-            $table->foreign('house_id')->references('id')->on('houses');
+            $table->foreign('house_id')->references('id')->on('houses')->onDelete('no action');
         });
     }
 
