@@ -12,7 +12,7 @@ class UserApiController extends Controller
     public function __construct(UserService $service)
     {
         $this->service = $service;
-    }
+    } 
 
     public function getUserById($id)
     {

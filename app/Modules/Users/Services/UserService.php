@@ -16,10 +16,11 @@ class UserService extends Service
 
     public function __construct(User $model)
     {
-        parent::__construct($model);   
+        parent::__construct($model);
     }
 
-    public function getUserById($id) {
-        return $this->model->first($id)->get();
+    public function getUserById($id)
+    {
+        return $this->model->find($id);
     }
 }

@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('pet_id');
             $table->date('date');
             $table->string('meal');
-            $table->string('notes'); // Leaving it here for NodeJs server
+            $table->string('notes')->default('');
+            $table->boolean('done'); // Leaving it here for NodeJs server
             $table->integer('medicine_id');
         });
 

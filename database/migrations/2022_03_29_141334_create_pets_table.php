@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('name');
             $table->integer('house_id');
         });
+
+        Schema::create('pictures', function (Blueprint $table) {
+            $table->integer('id')->autoIncrement();
+            $table->integer('pet_id');
+            $table->binary('image');
+        });
     }
 
     /**
@@ -29,5 +35,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('pets');
+        Schema::dropIfExists('pictures');
     }
 };
