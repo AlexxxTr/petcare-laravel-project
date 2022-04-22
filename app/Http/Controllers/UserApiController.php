@@ -22,4 +22,8 @@ class UserApiController extends Controller
 
         return $user;
     }
+
+    public function getLoggedInUser() {
+        return auth()->user();
+    }
 }

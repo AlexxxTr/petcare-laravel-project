@@ -22,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('users')->group(function () {
     Route::get('/{id}', [UserApiController::class, 'getUserById']);
+    Route::get('/', [UserApiController::class, 'getLoggedInUser']);
 });
