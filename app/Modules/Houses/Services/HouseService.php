@@ -19,13 +19,12 @@ class HouseService extends Service
 
     public function houseOfUser($id)
     {
-        return $this->model->where('owner', '=', $id)->firstOrFail();
+        return $this->model->findOrFail(['id' => $id])->first();
     }
 
     public function getGuests($ownerId)
     {
-        $house = $this->houseOfUser($ownerId);
-        return HouseGuest::where('house_id', '=', $house->id)->get();
+        return $this->houseOfUser($ownerId)->guests;
     }
 
     public function getPetsOfHouse($houseId)
