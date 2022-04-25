@@ -17,4 +17,8 @@ class PetApiController extends Controller
     public function getPet($petId) {
         return $this->service->getPet($petId);
     }
+
+    public function deletePet($petId) {
+        return $this->service->deletePet($petId);
+    }
 }
