@@ -22,12 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('users')->group(function () {
     Route::get('/{id}', [UserApiController::class, 'getUserById']);
-    Route::get('/', [UserApiController::class, 'getLoggedInUser'])->name('loggedInUser');
+    Route::get('/', [UserApiController::class, 'getLoggedInUser']);
 });
 
 Route::prefix('houses')->group(function () {
     Route::get('/', [HouseApiController::class, 'getHouseLoggedInUser']);
     Route::get('/guests', [HouseApiController::class, 'getGuests']);
+    Route::get('/{houseId}/pets', [HouseApiController::class, 'getPetsOfHouse']);
     Route::post('/', [HouseApiController::class, 'createHouse']);
     Route::post('/guests/{guestId}', [HouseApiController::class, 'addGuest']);
 });
