@@ -28,4 +28,8 @@ class HouseService extends Service {
     public function createHouse($data) {
         return $this->model->create($data);
     }
+
+    public function addGuest($data) {
+        return HouseGuest::create($data);
+    }
 }
