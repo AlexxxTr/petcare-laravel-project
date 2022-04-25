@@ -27,4 +27,5 @@ Route::prefix('users')->group(function () {
 
 Route::prefix('houses')->group(function () {
     Route::get('/', [HouseApiController::class, 'getHouseLoggedInUser']);
+    Route::get('/guests', [HouseApiController::class, 'getGuests']);
 });

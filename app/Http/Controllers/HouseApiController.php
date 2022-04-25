@@ -16,6 +16,11 @@ class HouseApiController extends Controller
 
     public function getHouseLoggedInUser(Request $request) {
         $userId = 3 /*$request->get('userId')*/;
-        return $this->service->HouseOfUser($userId);
+        return $this->service->houseOfUser($userId);
+    }
+
+    public function getGuests(Request $request) {
+        $userId = 3;
+        return $this->service->getGuests($userId);
     }
 }
