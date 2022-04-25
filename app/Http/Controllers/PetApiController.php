@@ -14,15 +14,23 @@ class PetApiController extends Controller
         $this->service = $service;
     }
 
-    public function getPet($petId) {
+    public function getPet($petId)
+    {
         return $this->service->getPet($petId);
     }
 
-    public function getHouseOfPet($petId) {
+    public function getHouseOfPet($petId)
+    {
         return $this->service->getHouseOfPet($petId);
     }
 
-    public function deletePet($petId) {
+    public function createPet(Request $request)
+    {
+        return $this->service->createPet($request->all());
+    }
+
+    public function deletePet($petId)
+    {
         return $this->service->deletePet($petId);
     }
 }
