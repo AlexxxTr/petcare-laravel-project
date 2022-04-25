@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministrationApiController;
 use App\Http\Controllers\HouseApiController;
 use App\Http\Controllers\PetApiController;
 use App\Http\Controllers\UserApiController;
@@ -40,4 +41,8 @@ Route::prefix('pets')->group(function () {
     Route::post('/', [PetApiController::class, 'createPet']);
     Route::put('/{petId}', [PetApiController::class, 'updatePet']);
     Route::delete('/{petId}', [PetApiController::class, 'deletePet']);
+});
+
+Route::prefix('administrations')->group(function () {
+    Route::get('/pet/{id}', [AdministrationApiController::class, 'getPetAdministrations']);
 });
