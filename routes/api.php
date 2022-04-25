@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HouseApiController;
+use App\Http\Controllers\PetApiController;
 use App\Http\Controllers\UserApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,4 +32,8 @@ Route::prefix('houses')->group(function () {
     Route::get('/{houseId}/pets', [HouseApiController::class, 'getPetsOfHouse']);
     Route::post('/', [HouseApiController::class, 'createHouse']);
     Route::post('/guests/{guestId}', [HouseApiController::class, 'addGuest']);
+});
+
+Route::prefix('pets')->group(function () {
+   Route::get('/{petId}', [PetApiController::class, 'getPet']); 
 });
