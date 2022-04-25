@@ -18,6 +18,10 @@ class PetApiController extends Controller
         return $this->service->getPet($petId);
     }
 
+    public function getHouseOfPet($petId) {
+        return $this->service->getHouseOfPet($petId);
+    }
+
     public function deletePet($petId) {
         return $this->service->deletePet($petId);
     }

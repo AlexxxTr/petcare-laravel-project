@@ -21,6 +21,10 @@ class PetService extends Service {
         return $this->model->findOrFail(['id' => $petId])->first();
     }
 
+    public function getHouseOfPet($petId) {
+        return $this->getPet($petId)->house;
+    }
+
     public function deletePet($petId) {
         return $this->model->where(['id' => $petId])->delete();
     }

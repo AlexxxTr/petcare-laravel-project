@@ -36,5 +36,6 @@ Route::prefix('houses')->group(function () {
 
 Route::prefix('pets')->group(function () {
    Route::get('/{petId}', [PetApiController::class, 'getPet']);
+   Route::get('/{petId}/house', [PetApiController::class, 'getHouseOfPet']);
    Route::delete('/{petId}', [PetApiController::class, 'deletePet']);
 });
