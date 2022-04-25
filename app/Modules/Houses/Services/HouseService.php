@@ -17,12 +17,15 @@ class HouseService extends Service {
     }
 
     public function houseOfUser($id) {
-        $house = $this->model->where('owner', '=', $id)->firstOrFail();
-        return $house;
+        return $this->model->where('owner', '=', $id)->firstOrFail();
     }
 
     public function getGuests($ownerId) {
-        $house = $this->model->where('owner', '=', $ownerId)->firstOrFail();
+        $house = $this->houseOfUser($ownerId);
         return HouseGuest::where('house_id', '=', $house->id)->get();
+    }
+
+    public function createHouse($data) {
+        return $this->model->create($data);
     }
 }
