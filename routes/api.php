@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\HouseApiController;
 use App\Http\Controllers\UserApiController;
-use App\Modules\Users\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('users')->group(function () {
     Route::get('/{id}', [UserApiController::class, 'getUserById']);
-    Route::get('/', [UserApiController::class, 'getLoggedInUser']);
+    Route::get('/', [UserApiController::class, 'getLoggedInUser'])->name('loggedInUser');
+});
+
+Route::prefix('houses')->group(function () {
+    Route::get('/', [HouseApiController::class, 'getHouseLoggedInUser']);
 });
