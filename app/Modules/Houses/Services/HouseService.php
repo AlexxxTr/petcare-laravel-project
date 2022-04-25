@@ -26,10 +26,12 @@ class HouseService extends Service {
     }
 
     public function createHouse($data) {
+        $this->validate($data);
+        if ($this->hasErrors()) return $this->getErrors();
         return $this->model->create($data);
     }
 
     public function addGuest($data) {
-        return HouseGuest::create($data);
+        return HouseGuest::updateOrCreate($data);
     }
 }
