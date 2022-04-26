@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdministrationApiController;
 use App\Http\Controllers\HouseApiController;
+use App\Http\Controllers\MedicineApiController;
 use App\Http\Controllers\PetApiController;
 use App\Http\Controllers\UserApiController;
 use Illuminate\Http\Request;
@@ -46,4 +47,8 @@ Route::prefix('pets')->group(function () {
 Route::prefix('administrations')->group(function () {
     Route::get('/pet/{id}', [AdministrationApiController::class, 'getPetAdministrations']);
     Route::get('/house/{id}', [AdministrationApiController::class, 'getHouseAdministrations']);
+});
+
+Route::prefix('medicines')->group(function () {
+    Route::get('/{id}', [MedicineApiController::class, 'getMedicineById']);
 });
