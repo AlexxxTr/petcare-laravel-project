@@ -14,7 +14,15 @@ class MedicineApiController extends Controller
         $this->service = $service;
     }
 
-    public function getMedicineById($id) {
+    public function getMedicineById($id)
+    {
         return $this->service->getMedicineById($id);
+    }
+
+    public function createOrUpdate(Request $request, $medicineId = null)
+    {
+        $data = $request->all();
+        $data['id'] = $medicineId;
+        return $this->service->createOrUpdate($data);
     }
 }

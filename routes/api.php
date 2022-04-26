@@ -51,4 +51,6 @@ Route::prefix('administrations')->group(function () {
 
 Route::prefix('medicines')->group(function () {
     Route::get('/{id}', [MedicineApiController::class, 'getMedicineById']);
+    Route::post('/', [MedicineApiController::class, 'createOrUpdate']);
+    Route::put('/{medicineId}', [MedicineApiController::class, 'createOrUpdate']);
 });

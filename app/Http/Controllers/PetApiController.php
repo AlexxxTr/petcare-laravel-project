@@ -28,7 +28,7 @@ class PetApiController extends Controller
     {
         $data = $request->all();
         $data['id'] = $petId;
-        return $this->service->createOrUpdatePet($data);
+        return $this->service->createOrUpdate($data);
     }
 
     public function deletePet($petId)

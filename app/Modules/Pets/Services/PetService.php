@@ -28,13 +28,6 @@ class PetService extends Service
         return $this->getPet($petId)->house;
     }
 
-    public function createOrUpdatePet($data)
-    {
-        $this->validate($data);
-        if ($this->hasErrors()) return $this->getErrors();
-        return $this->model->updateOrCreate(['id' => $data['id']], $data);
-    }
-
     public function deletePet($petId)
     {
         return $this->model->where(['id' => $petId])->delete();

@@ -22,6 +22,12 @@ abstract class Service
         $this->result = [];
     }
 
+    public function createOrUpdate($data) {
+        $this->validate($data);
+        if ($this->hasErrors()) return $this->getErrors();
+        return $this->model->updateOrCreate(['id' => $data['id']], $data);
+    }
+
     protected function validate($data, $id = false)
     {
         $this->validateId($id);
