@@ -34,6 +34,6 @@ class User extends Authenticatable
     ];
 
     public function guest() {
-        return $this->belongsToMany(House::class)->using(HouseGuest::class);
+        return $this->belongsToMany(House::class, 'house_guests', 'user_id', 'house_id')->using(HouseGuest::class);
     }
 }
