@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('meal');
             $table->string('notes')->default('');
-            $table->boolean('done'); // Leaving it here for NodeJs server
+            $table->boolean('done')->default(false); // Leaving it here for NodeJs server
             $table->integer('medicine_id');
         });
 

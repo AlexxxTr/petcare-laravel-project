@@ -9,7 +9,8 @@ class MedicineService extends Service
 {
     protected $rules = [
         "name" => ["required", "string"],
-        "description" => ["required", "string"]
+        "description" => ["required", "string"],
+        "house_id" => ["required", "integer"]
     ];
 
     public function __construct(Medicine $model)

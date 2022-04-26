@@ -20,7 +20,8 @@ class MedicineFactory extends Factory
     {
         return [
             "name" => $this->faker->lastName(),
-            "description" => $this->faker->text(40)
+            "description" => $this->faker->text(40),
+            "house_id" => $this->faker->numberBetween(1, 5)
         ];
     }
 }
