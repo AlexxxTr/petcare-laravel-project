@@ -45,4 +45,5 @@ Route::prefix('pets')->group(function () {
 
 Route::prefix('administrations')->group(function () {
     Route::get('/pet/{id}', [AdministrationApiController::class, 'getPetAdministrations']);
+    Route::get('/house/{id}', [AdministrationApiController::class, 'getHouseAdministrations']);
 });
