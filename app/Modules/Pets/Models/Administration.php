@@ -12,4 +12,12 @@ class Administration extends Model
     public $timestamps = false;
     
     protected $fillable = ['pet_id', 'date', 'meal', 'medicine_id', 'notes'];
+
+    public function pet() {
+        return $this->hasOne(Pet::class, 'id', 'pet_id');
+    }
+
+    public function medicine() {
+        return $this->hasOne(Medicine::class, 'id', 'medicine_id');
+    }
 }
