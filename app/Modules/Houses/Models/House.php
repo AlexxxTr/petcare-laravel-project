@@ -16,10 +16,14 @@ class House extends Model
     protected $fillable = ['name', 'owner'];
 
     public function guests() {
-        return $this->belongsToMany(User::class)->using(HouseGuest::class);
+        return $this->belongsToMany(User::class, 'house_guests', 'house_id', 'user_id')->using(HouseGuest::class);
     }
 
     public function pets() {
         return $this->hasMany(Pet::class);
+    }
+
+    public function owner() {
+        return $this->hasOne(User::class, 'id', 'owner');
     }
 }

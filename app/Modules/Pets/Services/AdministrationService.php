@@ -22,6 +22,6 @@ class AdministrationService extends Service
 
     public function getPetAdministrations($petId)
     {
-        return $this->model->with('pet')->with('medicine')->where(['pet_id' => $petId])->get(); // TODO: fix so that medicine and pet is filled
+        return $this->model->with('pet')->with('medicine')->where(['pet_id' => $petId])->get();
     }
 }

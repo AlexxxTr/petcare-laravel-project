@@ -15,6 +15,6 @@ class Pet extends Model
     protected $fillable = ['type', 'name', 'house_id'];
 
     public function house() {
-        return $this->belongsTo(House::class);
+        return $this->belongsTo(House::class, 'id', 'house_id');
     }
 }
