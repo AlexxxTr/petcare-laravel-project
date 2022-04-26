@@ -21,6 +21,6 @@ class UserService extends Service
 
     public function getUserById($id)
     {
-        return $this->model->where($id)->firstOrFail();
+        return $this->model->findOrFail($id);
     }
 }
