@@ -47,6 +47,7 @@ Route::prefix('pets')->group(function () {
 Route::prefix('administrations')->group(function () {
     Route::get('/pet/{id}', [AdministrationApiController::class, 'getPetAdministrations']);
     Route::get('/house/{id}', [AdministrationApiController::class, 'getHouseAdministrations']);
+    Route::post('/{id}/done', [AdministrationApiController::class, 'setAdministrationDone']);
 });
 
 Route::prefix('medicines')->group(function () {

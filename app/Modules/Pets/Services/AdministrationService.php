@@ -29,4 +29,9 @@ class AdministrationService extends Service
     {
         return $this->model->with(['pet', 'medicine'])->get(); // TODO: Ask about nested where clause
     }
+
+    public function setAdministrationDone($id)
+    {
+        return $this->model->findOrFail($id)->updateOrFail(['done' => true]);
+    }
 }

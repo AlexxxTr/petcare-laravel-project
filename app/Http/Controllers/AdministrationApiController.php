@@ -19,7 +19,13 @@ class AdministrationApiController extends Controller
         return $this->service->getPetAdministrations($id);
     }
 
-    public function getHouseAdministrations($id) {
+    public function getHouseAdministrations($id)
+    {
         return $this->service->getHouseAdministrations($id);
+    }
+
+    public function setAdministrationDone($id)
+    {
+        return $this->service->setAdministrationDone($id);
     }
 }
