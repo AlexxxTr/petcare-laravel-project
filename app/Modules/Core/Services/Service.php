@@ -24,8 +24,7 @@ abstract class Service
 
     public function createOrUpdate($data) {
         $this->validate($data);
-        if ($this->hasErrors()) return $this->getErrors();
-        return $this->model->updateOrCreate(['id' => $data['id']], $data);
+        $this->result = $this->model->updateOrCreate(['id' => $data['id']], $data);
     }
 
     protected function validate($data, $id = false)
@@ -56,17 +55,17 @@ abstract class Service
         }
     }
 
-    protected function hasErrors()
+    public function hasErrors()
     {
         return count($this->errors) > 0;
     }
 
-    protected function getErrors()
+    public function getErrors()
     {
         return $this->errors;
     }
 
-    protected function getResult()
+    public function getResult()
     {
         return $this->result;
     }

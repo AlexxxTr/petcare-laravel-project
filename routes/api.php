@@ -23,35 +23,35 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('users')->group(function () {
-    Route::get('/{id}', [UserApiController::class, 'getUserById']);
-    Route::get('/', [UserApiController::class, 'getLoggedInUser']);
+Route::prefix('users')->controller(UserApiController::class)->group(function () {
+    Route::get('{id}', 'getUserById');
+    Route::get('', 'getLoggedInUser');
 });
 
-Route::prefix('houses')->group(function () {
-    Route::get('/', [HouseApiController::class, 'getHouseLoggedInUser']);
-    Route::get('/guests', [HouseApiController::class, 'getGuests']);
-    Route::get('/{houseId}/pets', [HouseApiController::class, 'getPetsOfHouse']);
-    Route::post('/', [HouseApiController::class, 'createHouse']);
-    Route::post('/guests/{guestId}', [HouseApiController::class, 'addGuest']);
+Route::prefix('houses')->controller(HouseApiController::class)->group(function () {
+    Route::get('', 'getHouseLoggedInUser');
+    Route::get('guests', 'getGuests');
+    Route::get('{houseId}/pets', 'getPetsOfHouse');
+    Route::post('', 'createHouse');
+    Route::post('guests/{guestId}', 'addGuest');
 });
 
-Route::prefix('pets')->group(function () {
-    Route::get('/{petId}', [PetApiController::class, 'getPet']);
-    Route::get('/{petId}/house', [PetApiController::class, 'getHouseOfPet']);
-    Route::post('/', [PetApiController::class, 'createOrUpdate']);
-    Route::put('/{petId}', [PetApiController::class, 'createOrUpdate']);
-    Route::delete('/{petId}', [PetApiController::class, 'deletePet']);
+Route::prefix('pets')->controller(PetApiController::class)->group(function () {
+    Route::get('{petId}', 'getPet');
+    Route::get('{petId}/house', 'getHouseOfPet');
+    Route::post('', 'createOrUpdate');
+    Route::put('{petId}', 'createOrUpdate');
+    Route::delete('{petId}', 'deletePet');
 });
 
-Route::prefix('administrations')->group(function () {
-    Route::get('/pet/{id}', [AdministrationApiController::class, 'getPetAdministrations']);
-    Route::get('/house/{id}', [AdministrationApiController::class, 'getHouseAdministrations']);
-    Route::post('/{id}/done', [AdministrationApiController::class, 'setAdministrationDone']);
+Route::prefix('administrations')->controller(AdministrationApiController::class)->group(function () {
+    Route::get('pet/{id}', 'getPetAdministrations');
+    Route::get('house/{id}', 'getHouseAdministrations');
+    Route::post('{id}/done', 'setAdministrationDone');
 });
 
-Route::prefix('medicines')->group(function () {
-    Route::get('/{id}', [MedicineApiController::class, 'getMedicineById']);
-    Route::post('/', [MedicineApiController::class, 'createOrUpdate']);
-    Route::put('/{medicineId}', [MedicineApiController::class, 'createOrUpdate']);
+Route::prefix('medicines')->controller(MedicineApiController::class)->group(function () {
+    Route::get('{id}', 'getMedicineById');
+    Route::post('', 'createOrUpdate');
+    Route::put('{medicineId}', 'createOrUpdate');
 });

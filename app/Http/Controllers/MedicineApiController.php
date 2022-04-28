@@ -23,6 +23,8 @@ class MedicineApiController extends Controller
     {
         $data = $request->all();
         $data['id'] = $medicineId;
-        return $this->service->createOrUpdate($data);
+        $this->service->createOrUpdate($data);
+        if ($this->service->hasErrors()) return response($this->service->getErrors(), 400);
+        return $this->service->getResult();
     }
 }
