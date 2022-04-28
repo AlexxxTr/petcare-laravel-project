@@ -22,12 +22,14 @@ class AdministrationService extends Service
 
     public function getPetAdministrations($petId)
     {
-        return $this->model->with(['pet', 'medicine'])->where(['pet_id' => $petId])->get();
+        return $this->model->with(['pet', 'medicine'])->where(['pet_id' => $petId, 'done' => false])->get();
     }
 
     public function getHouseAdministrations($houseId)
     {
-        return $this->model->with(['pet', 'medicine'])->get(); // TODO: Ask about nested where clause
+        return $this->model->with(['pet', 'medicine'])->whereHas('pet', function ($query) use ($houseId) {
+            $query->where('house_id', $houseId);
+        })->get();
     }
 
     public function setAdministrationDone($id)
