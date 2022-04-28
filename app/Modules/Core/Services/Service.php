@@ -9,7 +9,7 @@ abstract class Service
 {
 
     private $errors;
-    private $result;
+    protected $result;
 
     protected $rules = [];
 
