@@ -22,18 +22,20 @@ class AdministrationService extends Service
 
     public function getPetAdministrations($petId)
     {
-        return $this->model->with(['pet', 'medicine'])->where(['pet_id' => $petId, 'done' => false])->get();
+        $this->result = $this->model->with(['pet', 'medicine'])->where(['pet_id' => $petId, 'done' => false])->get();
     }
 
     public function getHouseAdministrations($houseId)
     {
-        return $this->model->with(['pet', 'medicine'])->whereHas('pet', function ($query) use ($houseId) {
+        $this->result = $this->model->with(['pet', 'medicine'])->whereHas('pet', function ($query) use ($houseId) {
             $query->where('house_id', $houseId);
         })->get();
     }
 
     public function setAdministrationDone($id)
     {
-        return $this->model->findOrFail($id)->updateOrFail(['done' => true]);
+        $adm = $this->model->find($id);
+        if (!$adm) $this->result = null;
+        $this->result = $adm->updateOrFail(['done' => true]);
     }
 }
