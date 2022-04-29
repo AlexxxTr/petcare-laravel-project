@@ -19,28 +19,31 @@ class HouseService extends Service
 
     public function houseOfUser($id)
     {
-        return $this->model->with('owner')->where(['owner' => $id])->firstOrFail();
+        $this->result = $this->model->with('owner')->where(['owner' => $id])->first();
+        return $this->result;
     }
 
     public function getGuests($ownerId)
     {
-        return $this->houseOfUser($ownerId)->guests;
+        $house = $this->houseOfUser($ownerId);
+        $this->result = $house->guests;
     }
 
     public function getPetsOfHouse($houseId)
     {
-        return $this->model->find($houseId)->pets;
+        $this->result = $this->model->find($houseId)->pets;
     }
 
     public function createHouse($data)
     {
         $this->validate($data);
-        if ($this->hasErrors()) return $this->getErrors();
-        return $this->model->create($data);
+        if ($this->hasErrors()) return;
+        $this->result = $this->model->create($data);
     }
 
-    public function addGuest($data)
+    public function addGuest($userId, $guestId)
     {
-        return HouseGuest::updateOrCreate($data);
+        $house = $this->houseOfUser($userId);
+        $this->result = HouseGuest::updateOrCreate(['house_id' => $house->id, 'user_id' => (int)$guestId]);
     }
 }
