@@ -16,23 +16,32 @@ class PetApiController extends Controller
 
     public function getPet($petId)
     {
-        return $this->service->getPet($petId);
+        $this->service->getPet($petId);
+        if ($this->service->getResult() == null) return response(['message' => 'No pet found'], 404);
+        return $this->service->getResult();
     }
 
     public function getHouseOfPet($petId)
     {
-        return $this->service->getHouseOfPet($petId);
+        $this->service->getHouseOfPet($petId); 
+        if ($this->service->getResult() == null) return response(['message' => 'No pet found'], 404);
+        return $this->service->getResult();
     }
 
     public function createOrUpdate(Request $request, $petId = null)
     {
         $data = $request->all();
         $data['id'] = $petId;
-        return $this->service->createOrUpdate($data);
+        $this->service->createOrUpdate($data);
+        if ($this->service->hasErrors()) return response($this->service->getErrors(), 403);
+        if ($this->service->getResult() == null) return response(['message' => 'No pet found to update'], 404);
+        return $this->service->getResult();
     }
 
     public function deletePet($petId)
     {
-        return $this->service->deletePet($petId);
+        $this->service->deletePet($petId);
+        if ($this->service->getResult()) return response(['message' => 'Pet succesfully removed'], 200);
+        else return response(['message' => 'No pet found to remove'], 404);
     }
 }

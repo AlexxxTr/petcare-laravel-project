@@ -20,16 +20,19 @@ class PetService extends Service
 
     public function getPet($petId)
     {
-        return $this->model->findOrFail(['id' => $petId])->first();
+        $this->result = $this->model->find(['id' => $petId])->first();
+        return $this->result;
     }
 
     public function getHouseOfPet($petId)
     {
-        return $this->getPet($petId)->house;
+        $pet = $this->getPet($petId);
+        if ($pet == null) return $this->result = null;
+        $this->result = $pet->house;
     }
 
     public function deletePet($petId)
     {
-        return $this->model->where(['id' => $petId])->delete();
+        $this->result = $this->model->where(['id' => $petId])->delete();
     }
 }
