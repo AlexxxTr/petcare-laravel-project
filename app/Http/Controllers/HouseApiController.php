@@ -14,17 +14,17 @@ class HouseApiController extends Controller
         $this->service = $service;
     }
 
-    public function getHouseLoggedInUser(Request $request)
+    public function getHouseLoggedInUser()
     {
-        $userId = 3 /*$request->get('userId')*/;
+        $userId = auth()->user()->id;
         $this->service->houseOfUser($userId);
         if ($this->service->getResult() == null) return response('No house found for this user', 404);
-        $this->service->getResult();
+        return $this->service->getResult();
     }
 
-    public function getGuests(Request $request)
+    public function getGuests()
     {
-        $userId = 3;
+        $userId = auth()->user()->id;
         $this->service->getGuests($userId);
         return $this->service->getResult();
     }
@@ -36,14 +36,16 @@ class HouseApiController extends Controller
 
     public function createHouse(Request $request)
     {
-        $this->service->createHouse($request->all());
+        $data = $request->all();
+        $data['owner'] = auth()->user()->id;
+        $this->service->createHouse($data);
         if ($this->service->hasErrors()) return response($this->service->getErrors(), 401);
         return $this->service->getResult();
     }
 
-    public function addGuest(Request $request, $guestId)
+    public function addGuest($guestId)
     {
-        $userId = 3 /*$request->get('userId')*/;
+        $userId = auth()->user()->id;
         $this->service->addGuest($userId, $guestId);
         return $this->service->getResult();
     }
