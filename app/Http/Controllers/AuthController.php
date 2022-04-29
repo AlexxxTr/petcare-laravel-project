@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Modules\Auth\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -9,29 +10,24 @@ use App\Modules\Users\Models\User;
 
 class AuthController extends Controller
 {
+    private $service;
 
-    public function __construct()
+    public function __construct(AuthService $service)
     {
+        $this->service = $service;
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-        $credentials = $request->only('email', 'password');
+        $this->service->login($request->only('email', 'password'));
+        $token = $this->service->getResult();
+        if (!$token) return response()->json([
+            'status' => 'error',
+            'message' => 'Unauthorized',
+        ], 401);
 
-        $token = Auth::attempt($credentials);
-        if (!$token) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
-        }
-
-        $user = Auth::user();
+        $user = auth()->user();
         return response()->json([
             'status' => 'success',
             'user' => $user,
@@ -44,23 +40,17 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
+        $this->service->register($request->only('name', 'email', 'password'), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $token = Auth::login($user);
+        
+        $token = Auth::login($this->service->getResult());
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
-            'user' => $user,
+            'user' => auth()->user(),
             'authorisation' => [
                 'token' => $token,
                 'type' => 'bearer',
