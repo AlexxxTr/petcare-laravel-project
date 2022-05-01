@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HouseApiController;
 use App\Http\Controllers\MedicineApiController;
 use App\Http\Controllers\PetApiController;
+use App\Http\Controllers\PictureApiController;
 use App\Http\Controllers\UserApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,11 @@ Route::middleware('auth:api')->group(function () {
         Route::post('', 'createOrUpdate');
         Route::put('{petId}', 'createOrUpdate');
         Route::delete('{petId}', 'deletePet');
+    });
+
+    Route::prefix('pictures')->controller(PictureApiController::class)->group(function () {
+        Route::get('house/{houseId}', 'getPicturesHouse');
+        Route::get('pet/{petId}', 'getPicturesPet');
     });
 
     Route::prefix('administrations')->controller(AdministrationApiController::class)->group(function () {
