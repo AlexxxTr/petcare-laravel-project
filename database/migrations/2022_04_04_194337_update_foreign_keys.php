@@ -34,6 +34,10 @@ return new class extends Migration
         Schema::table('pets', function (Blueprint $table) {
             $table->foreign('house_id')->references('id')->on('houses')->onDelete('no action');
         });
+
+        Schema::table('pictures', function (Blueprint $table) {
+            $table->foreign('pet_id')->references('id')->on('pets')->onDelete('no action');
+        });
     }
 
     /**
