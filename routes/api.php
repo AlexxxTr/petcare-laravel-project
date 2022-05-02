@@ -57,6 +57,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('pictures')->controller(PictureApiController::class)->group(function () {
         Route::get('house/{houseId}', 'getPicturesHouse');
         Route::get('pet/{petId}', 'getPicturesPet');
+        Route::post('/new', 'savePicture');
     });
 
     Route::prefix('administrations')->controller(AdministrationApiController::class)->group(function () {

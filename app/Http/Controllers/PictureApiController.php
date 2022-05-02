@@ -25,4 +25,11 @@ class PictureApiController extends Controller
         $this->service->getPicturesPet($petId);
         return $this->service->getResult();
     }
+
+    public function savePicture(Request $request) 
+    {
+        $this->service->savePicture($request);
+        if ($this->service->hasErrors()) return response($this->service->getErrors(), 400);
+        return $this->service->getResult();
+    }
 }
