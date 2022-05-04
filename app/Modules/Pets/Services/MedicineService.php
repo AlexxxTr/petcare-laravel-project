@@ -20,6 +20,6 @@ class MedicineService extends Service
 
     public function getMedicineById($id)
     {
-        $this->result = $this->model->find($id);
+        $this->result = $this->model->with('house')->find($id);
     }
 }

@@ -20,7 +20,7 @@ class PetService extends Service
 
     public function getPet($petId)
     {
-        $this->result = $this->model->find(['id' => $petId])->first();
+        $this->result = $this->model->with('house')->find(['id' => $petId])->first();
         return $this->result;
     }
 
