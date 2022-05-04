@@ -38,6 +38,10 @@ return new class extends Migration
         Schema::table('pictures', function (Blueprint $table) {
             $table->foreign('pet_id')->references('id')->on('pets')->onDelete('no action');
         });
+
+        Schema::table('medicines', function (Blueprint $table) {
+            $table->foreign('house_id')->references('id')->on('houses')->onDelete('no action');
+        });
     }
 
     /**
