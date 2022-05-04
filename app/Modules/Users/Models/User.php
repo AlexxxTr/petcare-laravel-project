@@ -35,7 +35,7 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     public function guest() {
-        return $this->belongsToMany(House::class, 'house_guests', 'user_id', 'house_id')->using(HouseGuest::class);
+        return $this->belongsToMany(House::class, 'house_guests', 'guest_id', 'house_id')->using(HouseGuest::class);
     }
 
     /**

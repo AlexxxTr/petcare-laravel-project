@@ -16,7 +16,7 @@ class House extends Model
     protected $fillable = ['name', 'owner'];
 
     public function guests() {
-        return $this->belongsToMany(User::class, 'house_guests', 'house_id', 'user_id')->using(HouseGuest::class);
+        return $this->belongsToMany(User::class, 'house_guests', 'house_id', 'guest_id')->using(HouseGuest::class);
     }
 
     public function pets() {

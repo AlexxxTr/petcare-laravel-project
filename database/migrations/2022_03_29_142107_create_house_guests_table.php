@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('house_guests', function (Blueprint $table) {
             $table->integer('house_id');
-            $table->integer('user_id');
+            $table->integer('guest_id');
         });
     }
 
