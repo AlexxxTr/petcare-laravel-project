@@ -29,7 +29,7 @@ class AdministrationApiController extends Controller
     public function setAdministrationDone($id)
     {
         $this->service->setAdministrationDone($id);
-        if ($this->service->getResult() == null) return response('No amdnistration found', 404);
+        if ($this->service->getResult() == null) return response(['message' => 'No amdnistration found'], 404);
         return $this->service->getResult();
     }
 }

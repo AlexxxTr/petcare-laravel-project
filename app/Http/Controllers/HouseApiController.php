@@ -18,7 +18,7 @@ class HouseApiController extends Controller
     {
         $userId = auth()->user()->id;
         $this->service->houseOfUser($userId);
-        if ($this->service->getResult() == null) return response('No house found for this user', 404);
+        if ($this->service->getResult() == null) return response(['message' => 'No house found for this user'], 404);
         return $this->service->getResult();
     }
 
@@ -46,6 +46,7 @@ class HouseApiController extends Controller
     public function addGuest($guestId)
     {
         $userId = auth()->user()->id;
+        if ($userId == (int)$guestId) return response(['message' => 'You can\'t add yourself as a guest'], 401);
         $this->service->addGuest($userId, $guestId);
         return $this->service->getResult();
     }

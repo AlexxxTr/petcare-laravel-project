@@ -17,7 +17,7 @@ class MedicineApiController extends Controller
     public function getMedicineById($id)
     {
         $this->service->getMedicineById($id);
-        if (count($this->service->getResult()) != 1) return response('No medicine found', 404);
+        if (count($this->service->getResult()) != 1) return response(['message' => 'No medicine found'], 404);
         return $this->service->getResult();
     }
 
