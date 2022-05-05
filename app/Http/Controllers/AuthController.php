@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Modules\Users\Models\User;
+use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
@@ -40,11 +41,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $this->service->register($request->only('name', 'email', 'password'), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
+        $this->service->register($request->only('name', 'email', 'password'));
         
         $token = Auth::login($this->service->getResult());
         return response()->json([

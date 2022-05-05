@@ -7,6 +7,7 @@ use App\Modules\Users\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class AuthService extends Service {
     protected $rules = [
@@ -14,9 +15,16 @@ class AuthService extends Service {
         'password' => 'required|string',
     ];
 
+    private $registerRules;
+
     public function __construct(User $model)
     {
         parent::__construct($model);
+        $this->registerRules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => ['required', Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised()],
+        ];
     }
 
     public function login($requestData) {
@@ -24,8 +32,8 @@ class AuthService extends Service {
         $this->result = Auth::attempt($requestData);
     }
 
-    public function register($requestData, $rules) {
-        Validator::validate($requestData, $rules);
+    public function register($requestData) {
+        Validator::validate($requestData, $this->registerRules);
 
         $this->result = $this->model->create([
             'name' => $requestData['name'],
