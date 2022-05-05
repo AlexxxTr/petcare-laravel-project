@@ -11,10 +11,11 @@ class Medicine extends Model
     use HasFactory;
 
     public $timestamps = false;
-    
+
     protected $fillable = ['name', 'description', 'house_id'];
 
-    public function house() {
+    public function house()
+    {
         return $this->hasOne(House::class, 'id', 'house_id');
     }
 }

@@ -10,14 +10,16 @@ class Administration extends Model
     use HasFactory;
 
     public $timestamps = false;
-    
+
     protected $fillable = ['pet_id', 'date', 'meal', 'medicine_id', 'notes'];
 
-    public function pet() {
+    public function pet()
+    {
         return $this->hasOne(Pet::class, 'id', 'pet_id');
     }
 
-    public function medicine() {
+    public function medicine()
+    {
         return $this->hasOne(Medicine::class, 'id', 'medicine_id');
     }
 }

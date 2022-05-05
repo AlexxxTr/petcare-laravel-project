@@ -38,6 +38,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(House::class, 'house_guests', 'guest_id', 'house_id')->using(HouseGuest::class);
     }
 
+    public function house() {
+        return $this->hasOne(House::class, 'owner', 'id');
+    }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

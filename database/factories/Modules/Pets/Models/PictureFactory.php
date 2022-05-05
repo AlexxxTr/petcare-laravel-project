@@ -20,7 +20,7 @@ class PictureFactory extends Factory
     {
         return [
             "pet_id" => $this->faker->numberBetween(1, 5),
-            "image_path" => $this->faker->filePath()
+            "image_path" => 'images/' . $this->faker->image(storage_path('app/public/images'), 50, 50, fullPath: false)
         ];
     }
 }

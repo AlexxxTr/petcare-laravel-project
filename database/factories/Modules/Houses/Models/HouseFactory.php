@@ -18,10 +18,9 @@ class HouseFactory extends Factory
      */
     public function definition()
     {
-        static $ownerNr = 1;
         return [
             "name" => $this->faker->name(),
-            "owner" => $ownerNr++
+            "owner" => $this->faker->numberBetween(1, 5)
         ];
     }
 }
