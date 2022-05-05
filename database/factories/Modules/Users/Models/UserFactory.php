@@ -4,6 +4,7 @@ namespace Database\Factories\Modules\Users\Models;
 
 use App\Modules\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
@@ -22,7 +23,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'password' => 'tests',
+            'password' => Hash::make('tests'), // So I can log in as this user
         ];
     }
 }
