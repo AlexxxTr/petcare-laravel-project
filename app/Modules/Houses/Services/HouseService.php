@@ -23,10 +23,9 @@ class HouseService extends Service
         return $this->result;
     }
 
-    public function getGuests($ownerId)
+    public function getGuests($owner)
     {
-        $house = $this->houseOfUser($ownerId);
-        $this->result = $house->guests;
+        $this->result = $owner->house->guest;
     }
 
     public function getPetsOfHouse($houseId)
@@ -48,9 +47,8 @@ class HouseService extends Service
         $this->result = $this->model->create($data);
     }
 
-    public function addGuest($userId, $guestId)
+    public function addGuest($user, $guestId)
     {
-        $house = $this->houseOfUser($userId);
-        $this->result = HouseGuest::updateOrCreate(['house_id' => $house->id, 'user_id' => (int)$guestId]);
+        $this->result = HouseGuest::updateOrCreate(['house_id' => $user->house->id, 'user_id' => (int)$guestId]);
     }
 }
