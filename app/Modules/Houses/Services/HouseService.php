@@ -34,6 +34,13 @@ class HouseService extends Service
         $this->result = $this->model->find($houseId)->pets;
     }
 
+    public function getAllHousesRelatedToUser($user)
+    {
+        $allHouses = $user->guest;
+        $allHouses->push($user->house);
+        $this->result = $allHouses;
+    }
+
     public function createHouse($data)
     {
         $this->validate($data);

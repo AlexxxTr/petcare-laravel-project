@@ -44,6 +44,7 @@ Route::group(['prefix' => 'houses', 'controller' => HouseApiController::class, '
     Route::get('{houseId}/pets', 'getPetsOfHouse');
     Route::post('', 'createHouse');
     Route::post('guests/{guestId}', 'addGuest');
+    Route::get('all', 'getAllHousesRelatedToUser');
 });
 
 Route::group(['prefix' => 'pets', 'controller' => PetApiController::class, 'middleware' => 'auth:api'], function () {
