@@ -1,2 +1,1 @@
 web: vendor/bin/heroku-php-apache2 public/
-heroku config:set JWT_SECRET=4435a1ef1ca614bc1fc06262f650b558c47f18372ab4fd682bcbbc5e148b08205420f848247e50d613e1ed55a0e231298e99448f955908c2a193e3d7083ea22f
