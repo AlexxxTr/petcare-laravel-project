@@ -19,5 +19,5 @@ Route::get('/', function () {
 });
 
 Route::controller(ImageController::class)->group(function () {
-    Route::get('/images/{image}', 'retrieveImage')->where('image', '.*');
+    Route::get('/api/images/{image}', 'retrieveImage')->where('image', '.*');
 });

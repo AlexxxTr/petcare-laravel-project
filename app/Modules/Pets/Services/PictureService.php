@@ -28,7 +28,7 @@ class PictureService extends Service
 
     public function getPicturesPet($petId)
     {
-        $this->result = $this->model->with('pet')->where('petId', $petId)->get();
+        $this->result = $this->model->with('pet')->where('pet_id', $petId)->get();
     }
 
     public function savePicture($requestData)
@@ -39,7 +39,7 @@ class PictureService extends Service
         $path = $requestData->file('image')->store('images');
         $picture = $this->model->create(['pet_id' => $requestData->pet_id, 'image_path' => $path]);
 
-        $this->result = [     
+        $this->result = [
             "success" => true,
             "message" => "File successfully uploaded",
             "picture" => $picture
